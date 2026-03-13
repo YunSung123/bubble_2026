@@ -1,4 +1,4 @@
-package _my;
+package test04;
 
 import javax.swing.*;
 
@@ -17,7 +17,7 @@ public class Player extends JLabel implements Moveable {
     private final int JUMP_SPEED = 2;      // 점프/낙하 속도
     private final int JUMP_HEIGHT = 130;   // 점프 최대 높이
 
-    // 이동 상태 플래스
+    // 이동 상태 플레이어
     // true = 해당 방향으로 이동 중 (while 루프 조건)
     // false = 멈춤 (while 루프 탈출 -> Thread 종료)
     private boolean left = false;
@@ -25,7 +25,54 @@ public class Player extends JLabel implements Moveable {
     private boolean up = false;
     private boolean down = false;
 
-    // BubbleFrame 의 Key 이벤트에서 호출할 수 있도록 setter 설정
+    // 벽 충돌 상태 플래그
+    private boolean leftWallCrash;
+    private boolean rightWallCrash;
+
+    /// Getter
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public boolean isUp() {
+        return up;
+    }
+
+    public boolean isLeftWallCrash() {
+        return leftWallCrash;
+    }
+
+    public boolean isRightWallCrash() {
+        return rightWallCrash;
+    }
+
+    /// Setter
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     public void setLeft(boolean left) {
         this.left = left;
     }
@@ -34,6 +81,21 @@ public class Player extends JLabel implements Moveable {
         this.right = right;
     }
 
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+
+    public void setLeftWallCrash(boolean leftWallCrash) {
+        this.leftWallCrash = leftWallCrash;
+    }
+
+    public void setRightWallCrash(boolean rightWallCrash) {
+        this.rightWallCrash = rightWallCrash;
+    }
 
     public Player() {
         initData();
